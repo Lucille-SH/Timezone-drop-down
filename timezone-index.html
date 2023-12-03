@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Timezone Selection</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.43/moment-timezone-with-data-1970-2030.js"></script>
+    <style>
+      #countries {
+        padding: 10px;
+        font-size: 16px;
+        border-radius: 5px;
+        margin: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <form>
+      <select name="country" id="countries">
+        <option value="">Select a city</option>
+        <option value="Asia/Tokyo">🇯🇵 Tokyo</option>
+        <option value="Australia/Sydney">🇦🇺 Sydney</option>
+        <option value="Europe/Paris">🇫🇷 Paris</option>
+      </select>
+    </form>
+    <script>
+      function showCountryTime(event) {
+        if (event.target.value.length > 0) {
+          let date = moment().tz(event.target.value).format("LLLL");
+          alert(`It is ${date} in ${event.target.value}.`);
+        }
+      }
+
+      let selectedCountry = document.querySelector("#countries");
+      selectedCountry.addEventListener("change", showCountryTime);
+    </script>
+  </body>
+</html>
